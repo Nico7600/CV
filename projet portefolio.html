@@ -11,7 +11,7 @@
     <style>
         /* Variables de style */
         :root {
-            --background-color: rgba(255, 253, 240, 1); /* Softer cream color */
+            --background-color: #f5f5dc; /* Cream color */
             --gradient-start: #f7e1b5;
             --gradient-end: #edd2a4;
             --form-background: #fff;
@@ -141,7 +141,7 @@
             margin-bottom: 15px;
             border: 1px solid var(--input-border);
             border-radius: 5px;
-            color: var(--text-color);
+            color: black; /* Set text color to black */
             background-color: white;
             width: 100%;
             box-sizing: border-box;
@@ -390,6 +390,22 @@
         }
 
         document.addEventListener('DOMContentLoaded', animateProgressBars);
+
+        // Form submission handling
+        const contactForm = document.getElementById('contactForm');
+        const successNotification = document.getElementById('successNotification');
+        const errorNotification = document.getElementById('errorNotification');
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Simulate form submission
+            setTimeout(() => {
+                successNotification.style.display = 'block';
+                setTimeout(() => {
+                    successNotification.style.display = 'none';
+                }, 3000);
+            }, 500);
+        });
     </script>
 </body>
 </html>
