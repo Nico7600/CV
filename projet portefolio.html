@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de Nicolas Deprets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap" rel="stylesheet">
+    <style>
+        /* Variables de style */
+        :root {
+            --background-color: rgba(255, 253, 240, 1); /* Softer cream color */
+            --gradient-start: #f7e1b5;
+            --gradient-end: #edd2a4;
+            --form-background: #fff;
+            --text-color: #333;
+            --button-color: #28a745;
+            --button-hover-color: #218838;
+            --input-border: #ccc;
+            --success-color: #d4edda;
+            --error-color: #f8d7da;
+            --codepen-color: #30ee30;
+            --codepen-hover-color: #ffc107;
+            --github-color: #333;
+            --linkedin-color: #0077b5;
+            --dark-background: #121212;
+            --dark-text-color: #e0e0e0;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            --background-color: #121212;
+            --gradient-start: #333;
+            --gradient-end: #111;
+            --form-background: #1e1e1e;
+            --text-color: var(--dark-text-color);
+            --button-color: #bb86fc;
+            --button-hover-color: #3700b3;
+            --input-border: #555;
+            --success-color: #81c784;
+            --error-color: #e57373;
+            --codepen-color: #ffcc00;
+        }
+
+        /* Styles de base */
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Titre principal */
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-top: 50px;
+            color: var(--button-color);
+            animation: slideIn 1.5s ease;
+        }
+
+        /* Animation pour le titre */
+        @keyframes slideIn {
+            0% { transform: translateY(-30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Styles des sections */
+        section {
+            margin: 30px auto;
+            padding: 25px;
+            width: 90%;
+            max-width: 800px;
+            background: var(--form-background);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease;
+        }
+
+        /* Notification */
+        .notification {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .notification.success {
+            background-color: var(--success-color);
+            color: #155724;
+        }
+
+        .notification.error {
+            background-color: var(--error-color);
+            color: #721c24;
+        }
+
+        /* Formulaire */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .submit-button {
+            background-color: var(--button-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: var(--button-hover-color);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--input-border);
+            border-radius: 5px;
+            color: var(--text-color);
+            background-color: white;
+            width: 100%;
+            box-sizing: border-box;
+            transition: box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+        /* Liens professionnels centrés */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 2em;
+            margin-top: 10px;
+            color: var(--text-color);
+        }
+
+        .social-icons a {
+            color: inherit;
+            transition: transform 0.2s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.1);
+        }
+
+        .social-icons a.linkedin {
+            color: #0077b5;
+        }
+
+        .social-icons a.github {
+            color: #333;
+        }
+
+        .social-icons a.codepen {
+            color: #f3A333;
+        }
+
+        /* Compétences */
+        .skills {
+            text-align: center;
+        }
+
+        .skills ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .skills li {
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+
+        .progress-bar {
+            position: relative;
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            margin: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress {
+            height: 20px;
+            border-radius: 20px;
+            transition: width 2s ease;
+            position: relative;
+            width: 0;
+        }
+
+        .progress span {
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+            top: 2px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .progress.html { background-color: #4caf50; }
+        .progress.css { background-color: #ff9800; }
+        .progress.js { background-color: #2196f3; }
+
+        /* Slider Dark Mode */
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dark-mode-toggle input[type="checkbox"] {
+            width: 60px;
+            height: 30px;
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #ccc;
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-mode-toggle input[type="checkbox"]:checked {
+            background-color: #4caf50;
+        }
+
+        .dark-mode-toggle input[type="checkbox"]:before {
+            content: "\f185"; /* Sun icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 26px;
+            font-size: 18px;
+            transition: 0.3s ease;
+        }
+
+        .dark-mode-toggle input[type="checkbox"]:checked:before {
+            content: "\f186"; /* Moon icon */
+            left: 33px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slider Dark Mode -->
+    <div class="dark-mode-toggle">
+        <label for="darkModeToggle"></label>
+        <input type="checkbox" id="darkModeToggle">
+    </div>
+
+    <!-- Header -->
+    <h1>Portfolio de Deprets Nicolas</h1>
+
+    <!-- Bio -->
+    <section>
+        <h2 style="text-align: center; font-size: 2em;">Bio</h2>
+        <p>Je m'appelle Nicolas Deprets, j'ai 19 ans et je suis un apprenti développeur passionné par les nouvelles technologies. J'ai toujours été fasciné par la manière dont les technologies numériques peuvent transformer notre monde, et c'est cette passion qui m'a poussé à poursuivre une carrière dans le développement web.</p>
+    </section>
+
+    <!-- Parcours scolaire -->
+    <section>
+        <h2 style="text-align: center; font-size: 2em;">Parcours scolaire</h2>
+        <ul style="list-style-type: none; padding-left: 0;">
+            <li>2024-2025 <i class="fa-solid fa-arrow-right"></i> Première année à l'IFAPME de Charleroi (E6K) en développement web.</li>
+            <li>2023-2024 <i class="fa-solid fa-arrow-right"></i> Première année en soins animaliers à la Madelaine à Tournai.</li>
+            <li>2022-2023 <i class="fa-solid fa-arrow-right"></i> Première année en soins et aide à la personne à Saint-Charles à Péruwelz.</li>
+        </ul>
+    </section>
+
+        <!-- Compétences -->
+        <section class="skills">
+            <h2 style="text-align: center; font-size: 2em;">Mes compétences</h2>
+            <ul>
+                <li>HTML <div class="progress-bar"><div class="progress html" data-value="70"><span>70%</span></div></div></li>
+                <li>CSS <div class="progress-bar"><div class="progress css" data-value="50"><span>50%</span></div></div></li>
+                <li>JavaScript <div class="progress-bar"><div class="progress js" data-value="7"><span>7%</span></div></div></li>
+            </ul>
+        </section>
+    
+        <!-- Projets réalisés -->
+        <section>
+            <h2 style="text-align: center; font-size: 2em;">Projets Réalisés</h2>
+            <ul>
+                <li><i class="fas fa-tools"></i> <a href="https://nationsgloryrp.fr/" target="_blank">NationsTool</a> - 2022 <i class="fa-solid fa-chevron-right"></i> Toujours d'actualité</li>
+            </ul>
+            <p>NationsTool est un projet collaboratif réalisé par un groupe de développeurs passionnés, mené par <a href="https://github.com/laitfrais" target="_blank">Laitfrais</a>, et des membres de la communauté du serveur Minecraft <strong>NationsGlory</strong>. Le site sert de passerelle entre le jeu et la communauté, renforçant le roleplay tout en offrant un système inspiré d'Amazon où vendeurs et acheteurs peuvent échanger des ressources. Ce projet est entièrement à but non lucratif, visant à enrichir l'expérience des joueurs et à renforcer les liens entre eux.</p>
+        </section>    
+
+    <!-- Liens professionnels -->
+    <section>
+        <h2 style="text-align: center; font-size: 2em;">Mes liens professionnels</h2>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/nicolasdeprets/" class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/nico7600" class="github" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://codepen.io/Nico7600" class="codepen" target="_blank"><i class="fab fa-codepen"></i></a>
+        </div>
+    </section>
+
+    <!-- Formulaire de contact -->
+    <section>
+        <h2 style="text-align: center; font-size: 2em;">Formulaire de contact</h2>
+        <form id="contactForm">
+            <label for="nom"><i class="fas fa-user"></i> Nom de famille :</label>
+            <input type="text" id="nom" name="nom" required placeholder="Pomme">
+
+            <label for="prenom"><i class="fas fa-user"></i> Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required placeholder="Jean">
+
+            <label for="entreprise"><i class="fas fa-building"></i> Entreprise (facultatif) :</label>
+            <input type="text" id="entreprise" name="entreprise">
+
+            <label for="telephone"><i class="fas fa-phone"></i> Téléphone :</label>
+            <input type="tel" id="telephone" name="telephone" required pattern="[0-9]{10}" placeholder="0123456789">
+
+            <label for="email"><i class="fas fa-envelope"></i> E-mail :</label>
+            <input type="email" id="email" name="email" required placeholder="exemple@gmail.com">
+
+            <label for="note"><i class="fas fa-comment-dots"></i> Note (facultative) :</label>
+            <textarea id="note" name="note" rows="4"></textarea>
+
+            <button type="submit" class="submit-button"><i class="fas fa-paper-plane"></i> Envoyer</button>
+        </form>
+
+        <div class="notification success" id="successNotification">Votre demande a été envoyée avec succès !</div>
+        <div class="notification error" id="errorNotification">Une erreur s'est produite. Veuillez réessayer.</div>
+    </section>
+
+    <script>
+        // Code pour activer/désactiver le mode sombre
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', darkModeToggle.checked);
+        });
+
+        // Code pour animer les barres de progression
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress');
+            progressBars.forEach(bar => {
+                const value = bar.getAttribute('data-value');
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = value + '%';
+                }, 100); // Delay to trigger the animation
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', animateProgressBars);
+    </script>
+</body>
+</html>
