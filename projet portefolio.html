@@ -11,7 +11,7 @@
     <style>
         /* Variables de style */
         :root {
-            --background-color: #f5f5dc; /* Cream color */
+            --background-color: #f5f5dc; /* Couleur crème */
             --gradient-start: #f7e1b5;
             --gradient-end: #edd2a4;
             --form-background: #fff;
@@ -29,7 +29,7 @@
             --dark-text-color: #e0e0e0;
         }
 
-        /* Dark mode */
+        /* Mode sombre */
         body.dark-mode {
             --background-color: #121212;
             --gradient-start: #333;
@@ -141,7 +141,7 @@
             margin-bottom: 15px;
             border: 1px solid var(--input-border);
             border-radius: 5px;
-            color: black; /* Set text color to black */
+            color: black; /* Définir la couleur du texte en noir */
             background-color: white;
             width: 100%;
             box-sizing: border-box;
@@ -239,7 +239,7 @@
         .progress.css { background-color: #ff9800; }
         .progress.js { background-color: #2196f3; }
 
-        /* Slider Dark Mode */
+        /* Slider Mode Sombre */
         .dark-mode-toggle {
             position: absolute;
             top: 20px;
@@ -265,7 +265,7 @@
         }
 
         .dark-mode-toggle input[type="checkbox"]:before {
-            content: "\f185"; /* Sun icon */
+            content: "\f185"; /* Icône de soleil */
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
             position: absolute;
@@ -280,11 +280,11 @@
         }
 
         .dark-mode-toggle input[type="checkbox"]:checked:before {
-            content: "\f186"; /* Moon icon */
+            content: "\f186"; /* Icône de lune */
             left: 33px;
         }
 
-        /* Responsive Design */
+        /* Design Responsive */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5em;
@@ -304,6 +304,24 @@
 
             .progress span {
                 font-size: 12px;
+            }
+
+            /* Ajuster les éléments du formulaire pour les écrans plus petits */
+            form {
+                padding: 10px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            textarea {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+
+            .submit-button {
+                padding: 8px 16px;
+                font-size: 0.9em;
             }
         }
 
@@ -327,18 +345,36 @@
             .progress span {
                 font-size: 10px;
             }
+
+            /* Ajuster davantage les éléments du formulaire pour les très petits écrans */
+            form {
+                padding: 5px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            textarea {
+                padding: 8px;
+                font-size: 0.8em;
+            }
+
+            .submit-button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Slider Dark Mode -->
+    <!-- Slider Mode Sombre -->
     <div class="dark-mode-toggle">
         <label for="darkModeToggle"></label>
         <input type="checkbox" id="darkModeToggle">
     </div>
 
-    <!-- Header -->
+    <!-- En-tête -->
     <h1>Portfolio de Deprets Nicolas</h1>
 
     <!-- Bio -->
@@ -423,27 +459,27 @@
         });
 
         // Code pour animer les barres de progression
-        function animateProgressBars() {
+        function animerBarresDeProgression() {
             const progressBars = document.querySelectorAll('.progress');
             progressBars.forEach(bar => {
                 const value = bar.getAttribute('data-value');
                 bar.style.width = '0';
                 setTimeout(() => {
                     bar.style.width = value + '%';
-                }, 100); // Delay to trigger the animation
+                }, 100); // Délai pour déclencher l'animation
             });
         }
 
-        document.addEventListener('DOMContentLoaded', animateProgressBars);
+        document.addEventListener('DOMContentLoaded', animerBarresDeProgression);
 
-        // Form submission handling
+        // Gestion de la soumission du formulaire
         const contactForm = document.getElementById('contactForm');
         const successNotification = document.getElementById('successNotification');
         const errorNotification = document.getElementById('errorNotification');
 
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault();
-            // Simulate form submission
+            // Simuler la soumission du formulaire
             setTimeout(() => {
                 successNotification.style.display = 'block';
                 setTimeout(() => {
