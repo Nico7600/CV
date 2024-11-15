@@ -11,7 +11,7 @@
     <style>
         /* Variables de style */
         :root {
-            --background-color: rgba(255, 253, 240, 1); /* Softer cream color */
+            --background-color: rgba(255, 253, 240, 1); /* Couleur crème plus douce */
             --gradient-start: #f7e1b5;
             --gradient-end: #edd2a4;
             --form-background: #fff;
@@ -28,7 +28,7 @@
             --dark-background: #121212;
             --dark-text-color: #e0e0e0;
         }
-        /* Dark mode */
+        /* Mode sombre */
         body.dark-mode {
             --background-color: #121212;
             --gradient-start: #333;
@@ -142,7 +142,7 @@
             outline: none;
         }
         textarea#note {
-            color: black; /* Ensure text color remains black */
+            color: black; /* Assurer que la couleur du texte reste noire */
         }
         /* Liens professionnels centrés */
         .social-icons {
@@ -213,7 +213,7 @@
         .progress.html { background-color: #4caf50; }
         .progress.css { background-color: #ff9800; }
         .progress.js { background-color: #2196f3; }
-        /* Slider Dark Mode */
+        /* Slider Mode Sombre */
         .dark-mode-toggle {
             position: absolute;
             top: 20px;
@@ -236,7 +236,7 @@
             background-color: #4caf50;
         }
         .dark-mode-toggle input[type="checkbox"]:before {
-            content: "\f185"; /* Sun icon */
+            content: "\f185"; /* Icône de soleil */
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
             position: absolute;
@@ -250,18 +250,18 @@
             transition: 0.3s ease;
         }
         .dark-mode-toggle input[type="checkbox"]:checked:before {
-            content: "\f186"; /* Moon icon */
+            content: "\f186"; /* Icône de lune */
             left: 33px;
         }
     </style>
 </head>
 <body>
-    <!-- Slider Dark Mode -->
+    <!-- Slider Mode Sombre -->
     <div class="dark-mode-toggle">
         <label for="darkModeToggle"></label>
         <input type="checkbox" id="darkModeToggle">
     </div>
-    <!-- Header -->
+    <!-- En-tête -->
     <h1>Portfolio de Deprets Nicolas</h1>
     <!-- Bio -->
     <section>
@@ -338,7 +338,7 @@
                 bar.style.width = '0';
                 setTimeout(() => {
                     bar.style.width = value + '%';
-                }, 100); // Delay to trigger the animation
+                }, 100); // Délai pour déclencher l'animation
             });
         }
         document.addEventListener('DOMContentLoaded', animateProgressBars);
@@ -348,19 +348,19 @@
         const errorNotification = document.getElementById('errorNotification');
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault();
-            // Simulate form submission success
-            const isSuccess = true; // Change this to simulate success or error
+            // Simuler le succès de l'envoi du formulaire
+            const isSuccess = true; // Changez ceci pour simuler un succès ou une erreur
 
             if (isSuccess) {
                 successNotification.style.display = 'block';
                 setTimeout(() => {
                     successNotification.style.display = 'none';
-                }, 3000); // Hide after 3 seconds
+                }, 3000); // Masquer après 3 secondes
             } else {
                 errorNotification.style.display = 'block';
                 setTimeout(() => {
                     errorNotification.style.display = 'none';
-                }, 3000); // Hide after 3 seconds
+                }, 3000); // Masquer après 3 secondes
             }
         });
     </script>
