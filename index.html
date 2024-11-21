@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de Nicolas Deprets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <!-- Slider Mode Sombre -->
+    <div class="dark-mode-toggle">
+        <label for="darkModeToggle"></label>
+        <input type="checkbox" id="darkModeToggle">
+    </div>
+    <!-- En-tête -->
+    <h1>Portfolio de Deprets Nicolas</h1>
+    <!-- Bio -->
+    <section>
+        <h2 style="text-align: center; font-size: 2em;">Bio</h2>
+        <p>Je m'appelle Nicolas Deprets, j'ai 19 ans et je suis un apprenti développeur passionné par les nouvelles technologies. J'ai toujours été fasciné par la manière dont les technologies numériques peuvent transformer notre monde, et c'est cette passion qui m'a poussé à poursuivre une carrière dans le développement web.</p>
+    </section>
+    <!-- Parcours scolaire -->
+    <section>
+        <h2 style="text-align: center; font-size: 2em;">Parcours scolaire</h2>
+        <ul style="list-style-type: none; padding-left: 0;">
+            <li>2024-2025 <i class="fa-solid fa-arrow-right"></i> Première année à l'IFAPME de Charleroi (E6K) en développement web.</li>
+            <li>2023-2024 <i class="fa-solid fa-arrow-right"></i> Première année en soins animaliers à la Madelaine à Tournai.</li>
+            <li>2022-2023 <i class="fa-solid fa-arrow-right"></i> Première année en soins et aide à la personne à Saint-Charles à Péruwelz.</li>
+        </ul>
+    </section>
+        <!-- Compétences -->
+        <section class="skills">
+            <h2 style="text-align: center; font-size: 2em;">Mes compétences</h2>
+            <ul>
+                <li>HTML <div class="progress-bar"><div class="progress html" data-value="70"><span>70%</span></div></div></li>
+                <li>CSS <div class="progress-bar"><div class="progress css" data-value="50"><span>50%</span></div></div></li>
+                <li>JavaScript <div class="progress-bar"><div class="progress js" data-value="7"><span>7%</span></div></div></li>
+            </ul>
+        </section>
+        <!-- Projets réalisés -->
+        <section>
+            <h2 style="text-align: center; font-size: 2em;">Projets Réalisés</h2>
+            <ul>
+                <li><i class="fas fa-tools"></i> <a href="https://nationsgloryrp.fr/" target="_blank">NationsTool</a> - 2022 <i class="fa-solid fa-chevron-right"></i> Toujours d'actualité</li>
+            </ul>
+            <p>NationsTool est un projet collaboratif réalisé par un groupe de développeurs passionnés, mené par <a href="https://github.com/laitfrais" target="_blank">Laitfrais</a>, et des membres de la communauté du serveur Minecraft <strong>NationsGlory</strong>. Le site sert de passerelle entre le jeu et la communauté, améliore le roleplay tout en offrant un système inspiré d'Amazon où vendeurs et acheteurs peuvent échanger des ressources. Ce projet est entièrement à but non lucratif, visant à enrichir l'expérience des joueurs et à renforcer les liens entre eux.</p>
+        </section>    
+    <!-- Liens professionnels -->
+    <section>
+        <h2 style="text-align: center; font-size: 2em;">Mes liens professionnels</h2>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/nicolas-deprets-62a6b4335/" class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/nico7600" class="github" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://codepen.io/Nico7600" class="codepen" target="_blank"><i class="fab fa-codepen"></i></a>
+        </div>
+    </section>
+    <!-- Formulaire de contact -->
+    <section>
+        <h2 style="text-align: center; font-size: 2em;">Formulaire de contact</h2>
+        <form id="contactForm" method="POST" action="send_mail.php">
+            <label for="nom"><i class="fas fa-user"></i> Nom de famille :</label>
+            <input type="text" id="nom" name="nom" required placeholder="Pomme">
+            <label for="prenom"><i class="fas fa-user"></i> Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required placeholder="Jean">
+            <label for="entreprise"><i class="fas fa-building"></i> Entreprise (facultatif) :</label>
+            <input type="text" id="entreprise" name="entreprise">
+            <label for="telephone"><i class="fas fa-phone"></i> Téléphone :</label>
+            <input type="tel" id="telephone" name="telephone" required pattern="[0-9]{10}" placeholder="0123456789">
+            <label for="email"><i class="fas fa-envelope"></i> E-mail :</label>
+            <input type="email" id="email" name="email" required placeholder="exemple@gmail.com">
+            <label for="note"><i class="fas fa-comment-dots"></i> Note (facultative) :</label>
+            <textarea id="note" name="note" rows="4"></textarea>
+            <button type="submit" class="submit-button"><i class="fas fa-paper-plane"></i> Envoyer</button>
+        </form>
+        <div class="notification success" id="successNotification">Votre demande a été envoyée avec succès !</div>
+        <div class="notification error" id="errorNotification">Une erreur s'est produite. Veuillez réessayer.</div>
+    </section>
+    <script src="js/main.js"></script>
+</body>
+</html>
