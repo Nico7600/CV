@@ -324,7 +324,6 @@
         <div class="notification success" id="successNotification">Votre demande a été envoyée avec succès !</div>
         <div class="notification error" id="errorNotification">Une erreur s'est produite. Veuillez réessayer.</div>
     </section>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         // Code pour activer/désactiver le mode sombre
         const darkModeToggle = document.getElementById('darkModeToggle');
@@ -356,25 +355,31 @@
                 data[key] = value;
             });
 
-            // Send email using EmailJS
-            emailjs.send('service_0ee3u2t', 'template_id', data, 'user_id')
-                .then((response) => {
+            // Send data to webhook
+            fetch('https://webhooks-webhosting.eu.ovhapis.com/1.0/vcs/github/push/eyJhbGciOiJFZERTQSIsImtpZCI6IjEiLCJ0eXAiOiJKV1QifQ.eyJ2ZXJzaW9uIjoxLCJuYW1lIjoibmljb2xhdi5jbHVzdGVyMDI3Lmhvc3Rpbmcub3ZoLm5ldCIsInBhdGgiOiJ3d3ciLCJjb3VudGVyIjowLCJzdWIiOiJnaXRodWIvZG40ODk0MTQtb3ZoIiwiZXhwIjoyNTI0NjA3OTk5LCJqdGkiOiJkNmRmZTUzYjM3OGU0ZTczMGIyYmMzMTdkODcyYTEzOTkwOTg4NDQ5In0.QmEOlfpiw54qw4JgUefR9-D1XXVwxGcjocyjD6d3TGyVEH-vWpPL9UBWNbLZxsof1SsxFI1rHjTh8hg2moZ_Cw', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
                     successNotification.style.display = 'block';
                     setTimeout(() => {
                         successNotification.style.display = 'none';
                     }, 3000); // Hide after 3 seconds
-                }, (error) => {
-                    errorNotification.style.display = 'block';
-                    setTimeout(() => {
-                        errorNotification.style.display = 'none';
-                    }, 3000); // Hide after 3 seconds
-                });
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .catch(error => {
+                errorNotification.style.display = 'block';
+                setTimeout(() => {
+                    errorNotification.style.display = 'none';
+                }, 3000); // Hide after 3 seconds
+            });
         });
-
-        // Initialize EmailJS
-        (function() {
-            emailjs.init('user_Mail formulaire');
-        })();
     </script>
 </body>
 </html>
