@@ -306,7 +306,7 @@
     <!-- Formulaire de contact -->
     <section>
         <h2 style="text-align: center; font-size: 2em;">Formulaire de contact</h2>
-        <form id="contactForm">
+        <form id="contactForm" method="POST" action="send_mail.php">
             <label for="nom"><i class="fas fa-user"></i> Nom de famille :</label>
             <input type="text" id="nom" name="nom" required placeholder="Pomme">
             <label for="prenom"><i class="fas fa-user"></i> Prénom :</label>
@@ -347,38 +347,20 @@
         const successNotification = document.getElementById('successNotification');
         const errorNotification = document.getElementById('errorNotification');
         contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Collect form data
-            const formData = new FormData(contactForm);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
+            // Simuler le succès de l'envoi du formulaire
+            const isSuccess = true; // Changez ceci pour simuler un succès ou une erreur
 
-            // Send data to webhook
-            fetch('https://webhooks-webhosting.eu.ovhapis.com/1.0/vcs/github/push/eyJhbGciOiJFZERTQSIsImtpZCI6IjEiLCJ0eXAiOiJKV1QifQ.eyJ2ZXJzaW9uIjoxLCJuYW1lIjoibmljb2xhdi5jbHVzdGVyMDI3Lmhvc3Rpbmcub3ZoLm5ldCIsInBhdGgiOiJ3d3ciLCJjb3VudGVyIjowLCJzdWIiOiJnaXRodWIvZG40ODk0MTQtb3ZoIiwiZXhwIjoyNTI0NjA3OTk5LCJqdGkiOiJkNmRmZTUzYjM3OGU0ZTczMGIyYmMzMTdkODcyYTEzOTkwOTg4NDQ5In0.QmEOlfpiw54qw4JgUefR9-D1XXVwxGcjocyjD6d3TGyVEH-vWpPL9UBWNbLZxsof1SsxFI1rHjTh8hg2moZ_Cw', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (response.ok) {
-                    successNotification.style.display = 'block';
-                    setTimeout(() => {
-                        successNotification.style.display = 'none';
-                    }, 3000); // Hide after 3 seconds
-                } else {
-                    throw new Error('Network response was not ok.');
-                }
-            })
-            .catch(error => {
+            if (isSuccess) {
+                successNotification.style.display = 'block';
+                setTimeout(() => {
+                    successNotification.style.display = 'none';
+                }, 3000); // Masquer après 3 secondes
+            } else {
                 errorNotification.style.display = 'block';
                 setTimeout(() => {
                     errorNotification.style.display = 'none';
-                }, 3000); // Hide after 3 seconds
-            });
+                }, 3000); // Masquer après 3 secondes
+            }
         });
     </script>
 </body>
