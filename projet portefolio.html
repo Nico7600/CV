@@ -324,6 +324,7 @@
         <div class="notification success" id="successNotification">Votre demande a été envoyée avec succès !</div>
         <div class="notification error" id="errorNotification">Une erreur s'est produite. Veuillez réessayer.</div>
     </section>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         // Code pour activer/désactiver le mode sombre
         const darkModeToggle = document.getElementById('darkModeToggle');
@@ -348,21 +349,32 @@
         const errorNotification = document.getElementById('errorNotification');
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault();
-            // Simuler le succès de l'envoi du formulaire
-            const isSuccess = true; // Changez ceci pour simuler un succès ou une erreur
+            // Collect form data
+            const formData = new FormData(contactForm);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
 
-            if (isSuccess) {
-                successNotification.style.display = 'block';
-                setTimeout(() => {
-                    successNotification.style.display = 'none';
-                }, 3000); // Masquer après 3 secondes
-            } else {
-                errorNotification.style.display = 'block';
-                setTimeout(() => {
-                    errorNotification.style.display = 'none';
-                }, 3000); // Masquer après 3 secondes
-            }
+            // Send email using EmailJS
+            emailjs.send('service_0ee3u2t', 'template_id', data, 'user_id')
+                .then((response) => {
+                    successNotification.style.display = 'block';
+                    setTimeout(() => {
+                        successNotification.style.display = 'none';
+                    }, 3000); // Hide after 3 seconds
+                }, (error) => {
+                    errorNotification.style.display = 'block';
+                    setTimeout(() => {
+                        errorNotification.style.display = 'none';
+                    }, 3000); // Hide after 3 seconds
+                });
         });
+
+        // Initialize EmailJS
+        (function() {
+            emailjs.init('user_Mail formulaire');
+        })();
     </script>
 </body>
 </html>
