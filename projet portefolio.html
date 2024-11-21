@@ -347,20 +347,32 @@
         const successNotification = document.getElementById('successNotification');
         const errorNotification = document.getElementById('errorNotification');
         contactForm.addEventListener('submit', function(event) {
-            // Simuler le succès de l'envoi du formulaire
-            const isSuccess = true; // Changez ceci pour simuler un succès ou une erreur
-
-            if (isSuccess) {
-                successNotification.style.display = 'block';
-                setTimeout(() => {
-                    successNotification.style.display = 'none';
-                }, 3000); // Masquer après 3 secondes
-            } else {
+            event.preventDefault();
+            const formData = new FormData(contactForm);
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => {
+                if (result.includes("The email has been sent successfully!")) {
+                    successNotification.style.display = 'block';
+                    setTimeout(() => {
+                        successNotification.style.display = 'none';
+                    }, 3000); // Hide after 3 seconds
+                } else {
+                    errorNotification.style.display = 'block';
+                    setTimeout(() => {
+                        errorNotification.style.display = 'none';
+                    }, 3000); // Hide after 3 seconds
+                }
+            })
+            .catch(error => {
                 errorNotification.style.display = 'block';
                 setTimeout(() => {
                     errorNotification.style.display = 'none';
-                }, 3000); // Masquer après 3 secondes
-            }
+                }, 3000); // Hide after 3 seconds
+            });
         });
     </script>
 </body>
